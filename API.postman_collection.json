@@ -16,21 +16,12 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.globals.get(\"variable_key\");\r",
-							"pm.environment.set(\"variable_key\", \"variable_value\");\r",
-							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
-							"    console.log(response.json());\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
 							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
-							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
-							"});\r",
-							"pm.test(\"Response time is less than 200ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
-							"});\r",
-							""
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -40,16 +31,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://demo.fusio-project.org/index.php/todo",
-					"protocol": "https",
+					"raw": "{{demoURL}}",
 					"host": [
-						"demo",
-						"fusio-project",
-						"org"
-					],
-					"path": [
-						"index.php",
-						"todo"
+						"{{demoURL}}"
 					]
 				}
 			},
@@ -66,26 +50,9 @@
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
-							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
-							"    console.log(response.json());\r",
+							"pm.test(\"Body matches status\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"status\");\r",
 							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
-							"});\r",
-							"var schema = {\r",
-							"    \"items\": {\r",
-							"        \"type\": \"boolean\"\r",
-							"    }\r",
-							"};\r",
-							"\r",
-							"var data1 = [true, false];\r",
-							"var data2 = [true, 123];\r",
-							"\r",
-							"pm.test('Schema is valid', function () {\r",
-							"    pm.expect(tv4.validate(data1, schema)).to.be.true;\r",
-							"    pm.expect(tv4.validate(data2, schema)).to.be.true;\r",
-							"});\r",
-							"var jsonObject = xml2Json(responseBody);\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
 							"});\r",
@@ -99,17 +66,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://demo.fusio-project.org/index.php/todo/?todo_id=2",
-					"protocol": "https",
+					"raw": "{{demoURL}}?todo_id=2",
 					"host": [
-						"demo",
-						"fusio-project",
-						"org"
-					],
-					"path": [
-						"index.php",
-						"todo",
-						""
+						"{{demoURL}}"
 					],
 					"query": [
 						{
@@ -132,16 +91,11 @@
 							"pm.test(\"Successful POST request\", function () {\r",
 							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
 							"});\r",
-							"pm.environment.set(\"variable_key\", \"variable_value\");\r",
-							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
-							"    console.log(response.json());\r",
+							"pm.test(\"Body matches createdAt\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"createdAt\");\r",
 							"});\r",
-							"pm.test(\"Body matches string\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
-							"});\r",
-							"pm.test(\"Your test name\", function () {\r",
-							"    var jsonData = pm.response.json();\r",
-							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"pm.test(\"Status code name has Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -152,15 +106,9 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/user",
-					"protocol": "https",
+					"raw": "{{URL}}",
 					"host": [
-						"reqres",
-						"in"
-					],
-					"path": [
-						"api",
-						"user"
+						"{{URL}}"
 					]
 				}
 			},
@@ -197,15 +145,11 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/user/2",
-					"protocol": "https",
+					"raw": "{{URL}}/2",
 					"host": [
-						"reqres",
-						"in"
+						"{{URL}}"
 					],
 					"path": [
-						"api",
-						"user",
 						"2"
 					]
 				}
@@ -223,12 +167,11 @@
 							"pm.test(\"Status code is 204\", function() {\r",
 							"    pm.response.to.have.status(204);\r",
 							"});\r",
-							"pm.globals.set(\"variable_key\", \"variable_value\");\r",
-							"pm.test(\"Body is correct\", function () {\r",
-							"    pm.response.to.have.body(\"response_body_string\");\r",
+							"pm.test(\"Content-Length is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
 							"});\r",
-							"pm.test(\"Response time is less than 200ms\", function () {\r",
-							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"pm.test(\"Status code has No Content\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -239,15 +182,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://reqres.in/api/users/2/user/{id}",
-					"protocol": "https",
+					"raw": "{{URL}}/2/user/{id}",
 					"host": [
-						"reqres",
-						"in"
+						"{{URL}}"
 					],
 					"path": [
-						"api",
-						"users",
 						"2",
 						"user",
 						"{id}"
